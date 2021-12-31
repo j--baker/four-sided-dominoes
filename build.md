@@ -3,7 +3,7 @@
 I don't know what I am doing.  If I do figure it out, I will forget.  :)
 
 
-## Update NVM, Node, and NPM.
+### Update NVM, Node, and NPM.
 
 ```
 # Node Version Manager
@@ -57,7 +57,11 @@ npm ERR! audit This command requires an existing lockfile.
 npm ERR! audit Try creating one first with: npm i --package-lock-only
 npm ERR! audit Original error: loadVirtual requires existing shrinkwrap file
 ...
+```
 
+### Setup Node and NPM project.
+
+```
 # Create package-lock.json file.
 $ npm install --package-lock-only
 ... error about package.json ...
@@ -68,5 +72,16 @@ true
 
 $ npm config get shrinkwrap
 true
+
+# Create the package.json file.
+$ npm init
+... pick the defaults ...
+
+$ npm install --package-lock-only
+up to date, audited 1 package in 273ms
+found 0 vulnerabilities
+
+$ npm audit
+found 0 vulnerabilities
 ```
 
