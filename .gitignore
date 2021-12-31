@@ -1,3 +1,6 @@
+# Ignore the target/output/build directory.
+/target/
+
 # node project dependencies
 node_modules
 
