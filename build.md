@@ -85,7 +85,6 @@ $ npm audit
 found 0 vulnerabilities
 ```
 
-
 ### Install gulp.
 
 ```
@@ -111,3 +110,26 @@ Regular expression denial of service - https://github.com/advisories/GHSA-ww39-9
 ...
 ```
 
+### Setup Gulp.
+
+```
+# Create the gulpfile.js
+$ vim gulpfile.js
+...
+
+# Test empty gulpfile.js.
+$ gulp
+[13:44:27] Using gulpfile .../gulpfile.js
+[13:44:27] Starting 'default'...
+[13:44:27] The following tasks did not complete: default
+[13:44:27] Did you forget to signal async completion?
+
+# Add dummy "return Promise.resolve();" to the "default" function.
+$ vim gulpfile.js
+...
+
+$ gulp
+[13:47:37] Using gulpfile .../gulpfile.js
+[13:47:37] Starting 'default'...
+[13:47:37] Finished 'default' after 1.72 ms
+```
