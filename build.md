@@ -178,13 +178,19 @@ $ gulp
 [13:47:37] Using gulpfile .../gulpfile.js
 [13:47:37] Starting 'default'...
 [13:47:37] Finished 'default' after 1.72 ms
+
+$ gulp --tasks
+[15:59:53] Tasks for .../gulpfile.js
+[15:59:53] └── default
 ```
 
-### Transpile ES6 (ES2015) to ES5 using Gulp and Babel.
+### FIXME: Transpile ES6 (ES2015) to ES5 using Gulp and Babel.
 
 ```
 $ npm install --save-dev babel-preset-es2015
 
+# This is old advice for Babel v6.
+# Besides, it is more clear to put this in the gulpfile.js directly.
 # { "presets": [ "es2015" ] }
 $ vim .babelrc
 
@@ -202,17 +208,22 @@ $ gulp
 Message:
     Plugin/Preset files are not allowed to export objects, only functions. In .../node_modules/babel-preset-es2015/lib/index.js
 
-# Change .babelrc
-# from this: { "presets": [ "es2015" ] }
-# to this  : { "presets": [ "@babel/preset-env" ] }
-# per this : https://stackoverflow.com/a/58676558
-$ vim .babelrc
+# Per package.json, Babel v8 is installed.
+# To fix, install and use '@babell/preset-env' instead of 'es2015' as the Babel preset.
+# (Removed the .babelrc file and configure in the gulpfile.js too.)
+$ npm install --save-dev @babel/preset-env
+```
 
-# That's even worse.
+### Running a Node test.
+```
+# This version of Node supports ES6 / ES2015.
+$ node src/node/test.js
+
+# Transpile to ES5.
 $ gulp
-...
-Message: Cannot find module '@babel/preset-env'
-...
+
+# Run the ES5, same output.
+$ node target/node/test.js
 ```
 
 
