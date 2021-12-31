@@ -133,3 +133,58 @@ $ gulp
 [13:47:37] Starting 'default'...
 [13:47:37] Finished 'default' after 1.72 ms
 ```
+
+### Transpile ES6 (ES2015) to ES5 using Gulp and Babel.
+
+```
+$ npm install --save-dev babel-preset-es2015
+
+# { "presets": [ "es2015" ] }
+$ vim .babelrc
+
+$ npm install --save-dev gulp-babel
+
+# Add Babel to the Gulp config.
+$ vim .gulpfile.js
+
+# Set up src/node/test.js, but it fails.
+$ gulp
+[14:24:13] Using gulpfile .../gulpfile.js
+[14:24:13] Starting 'default'...
+[14:24:14] 'default' errored after 187 ms
+[14:24:14] Error in plugin "gulp-babel"
+Message:
+    Plugin/Preset files are not allowed to export objects, only functions. In .../node_modules/babel-preset-es2015/lib/index.js
+
+# Change .babelrc
+# from this: { "presets": [ "es2015" ] }
+# to this  : { "presets": [ "@babel/preset-env" ] }
+# per this : https://stackoverflow.com/a/58676558
+$ vim .babelrc
+
+# That's even worse.
+$ gulp
+...
+Message: Cannot find module '@babel/preset-env'
+...
+```
+
+
+
+## Files
+
+- Git
+	- .git
+	- .gitignore
+- NPM
+	- package.json
+	- package-lock.json
+	- node_modules
+
+- Node
+	- src/node
+	- target/node
+
+- Browser source code
+	- src/public
+	- target/public

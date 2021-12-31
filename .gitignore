@@ -1,3 +1,9 @@
+# node project dependencies
+node_modules
+
+# npm debugging logs
+npm-debug.log*
+
 # Vim temporary and swap files
 *~
 .*.sw?

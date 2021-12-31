@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/j--baker/four-sided-dominoes#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0"
   }
 }
