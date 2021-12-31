@@ -1,0 +1,3 @@
+# Vim temporary and swap files
+*~
+.*.sw?
