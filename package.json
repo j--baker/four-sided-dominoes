@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/j--baker/four-sided-dominoes/issues"
   },
-  "homepage": "https://github.com/j--baker/four-sided-dominoes#readme"
+  "homepage": "https://github.com/j--baker/four-sided-dominoes#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }

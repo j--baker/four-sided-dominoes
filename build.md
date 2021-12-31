@@ -85,3 +85,29 @@ $ npm audit
 found 0 vulnerabilities
 ```
 
+
+### Install gulp.
+
+```
+# Install gulp globally.
+$ npm install --global gulp
+...
+5 high severity vulnerabilities
+...
+
+# Install gulp as a development dependency for this project.
+$ npm install --save-dev gulp
+...
+6 high severity vulnerabilities
+...
+
+# Try to fix the security issues, but give up for now.
+$ npm audit fix
+...
+# npm audit report
+glob-parent  <5.1.2
+Severity: high
+Regular expression denial of service - https://github.com/advisories/GHSA-ww39-953v-wcq6
+...
+```
+
