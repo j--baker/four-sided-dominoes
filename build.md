@@ -57,6 +57,45 @@ npm ERR! audit This command requires an existing lockfile.
 npm ERR! audit Try creating one first with: npm i --package-lock-only
 npm ERR! audit Original error: loadVirtual requires existing shrinkwrap file
 ...
+
+# Set the version of Node to use.
+$ nvm use 17.3.0
+Now using node v17.3.0 (npm v8.3.0)
+
+# Set the default version of Node.
+$ nvm alias default 17.3.0
+default -> 17.3.0 (-> v17.3.0)
+
+# Use the default version of Node.
+$ nvm use default
+Now using node v17.3.0 (npm v8.3.0)
+
+$ nvm list
+        v8.11.2
+->      v17.3.0
+         system
+default -> 17.3.0 (-> v17.3.0)
+iojs -> N/A (default)
+unstable -> N/A (default)
+node -> stable (-> v17.3.0) (default)
+stable -> 17.3 (-> v17.3.0) (default)
+lts/* -> lts/gallium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.24.1 (-> N/A)
+lts/erbium -> v12.22.8 (-> N/A)
+lts/fermium -> v14.18.2 (-> N/A)
+lts/gallium -> v16.13.1 (-> N/A)
+
+$ nvm --version
+0.38.0
+$ node --version
+v17.3.0
+$ npm --version
+8.3.0
+$ npx --version
+8.3.0
 ```
 
 ### Setup Node and NPM project.
@@ -108,6 +147,10 @@ glob-parent  <5.1.2
 Severity: high
 Regular expression denial of service - https://github.com/advisories/GHSA-ww39-953v-wcq6
 ...
+
+$ gulp --version
+CLI version: 2.3.0
+Local version: 4.0.2
 ```
 
 ### Setup Gulp.
@@ -116,6 +159,9 @@ Regular expression denial of service - https://github.com/advisories/GHSA-ww39-9
 # Create the gulpfile.js
 $ vim gulpfile.js
 ...
+
+# Make sure using the correct Node if switch to another terminal.
+$ nvm use default
 
 # Test empty gulpfile.js.
 $ gulp
