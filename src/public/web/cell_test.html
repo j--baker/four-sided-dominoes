@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Cell Test</title>
+
+		<script src="../es6/Cell.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<h1>Check the console</h1>
+
+		<script type="text/javascript">
+			'use strict';
+
+			const board = [
+				[ new Cell(), new Cell() ],
+				[ new Cell(), new Cell() ],
+			];
+
+			// Do not use for..in for the indexes.
+			// They will be strings instead of integers, and the order is not guaranteed.
+			for (let row = 0; row < board.length; row++) {
+				for (let column = 0; column < board[row].length; column++) {
+					console.log(`Initializing cell [ ${column}, ${row} ]`);
+
+					const cell = board[row][column];
+					cell.name = `[ ${column}, ${row} ]`;
+
+					if (row > 0) { cell.north = board[row - 1][column]; }
+					if (column < board[row].length - 1) { cell.east = board[row][column + 1]; }
+					if (row < board.length - 1) { cell.south = board[row + 1][column]; }
+					if (column > 0) { cell.west = board[row][column - 1]; }
+				}
+			}
+
+			for ( const row of board ) {
+				for ( const cell of row ) {
+					console.log(`${cell.name} (${+cell}) -> { NORTH: ${cell.north.name}, EAST: ${cell.east.name}, SOUTH: ${cell.south.name}, WEST: ${cell.west.name} }`);
+				}
+
+			}
+		</script>
+	</body>
+
+</html>
