@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Tile Test</title>
+
+		<style>
+			.tile td {
+				height: 3em;
+				padding: 1em;
+				width: 10em;
+			}
+		</style>
+
+		<script type="text/javascript">
+			'use strict';
+
+			class Tile {
+				// Private fields are not supported in Firefox v88.
+				// #table = null;
+
+				constructor(table) {
+					this.table = table;
+				}
+
+				setLabels( [ north, east, south, west ] ) {
+					this.table.querySelector( '.north' ).textContent = north;
+					this.table.querySelector( '.east' ).textContent = east;
+					this.table.querySelector( '.south' ).textContent = south;
+					this.table.querySelector( '.west' ).textContent = west;
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<table class="tile">
+			<tbody>
+				<tr>
+					<td class="northwest"></td>
+					<td class="north"></td>
+					<td class="northeast">
+						<button class="rotate-clockwise">
+							&#x21bb;
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td class="west"></td>
+					<td class="origin"></td>
+					<td class="east"></td>
+				</tr>
+				<tr>
+					<td class="southwest"></td>
+					<td class="south"></td>
+					<td class="southeast"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<script type="text/javascript">
+			'use strict';
+
+			const tile = new Tile( document.querySelector( '.tile' ) );
+
+			tile.setLabels( [ "12 o'clock", "3 o'clock", "6 o'clock", "9 o'clock" ] );
+		</script>
+	</body>
+
+</html>
