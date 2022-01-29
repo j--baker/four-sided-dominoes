@@ -15,33 +15,15 @@
 		<script type="text/javascript">
 			'use strict';
 
-			const board = [
-				[ new Cell(), new Cell() ],
-				[ new Cell(), new Cell() ],
-			];
-
-			// Do not use for..in for the indexes.
-			// They will be strings instead of integers, and the order is not guaranteed.
-			for (let row = 0; row < board.length; row++) {
-				for (let column = 0; column < board[row].length; column++) {
-					console.log(`Initializing cell [ ${column}, ${row} ]`);
-
-					const cell = board[row][column];
-					cell.name = `[ ${column}, ${row} ]`;
-
-					if (row > 0) { cell.north = board[row - 1][column]; }
-					if (column < board[row].length - 1) { cell.east = board[row][column + 1]; }
-					if (row < board.length - 1) { cell.south = board[row + 1][column]; }
-					if (column > 0) { cell.west = board[row][column - 1]; }
-				}
-			}
-
-			for ( const row of board ) {
-				for ( const cell of row ) {
-					console.log(`${cell.name} (${+cell}) -> { NORTH: ${cell.north.name}, EAST: ${cell.east.name}, SOUTH: ${cell.south.name}, WEST: ${cell.west.name} }`);
-				}
-
-			}
+			console.log('0x0 grid: ', Cell.newGrid());
+			console.log('1x1 grid: ', Cell.newGrid(1));
+			console.log('1x1 grid: ', Cell.newGrid(1, 1));
+			console.log('1x2 grid: ', Cell.newGrid(1, 2));
+			console.log('2x1 grid: ', Cell.newGrid(2, 1));
+			console.log('2x2 grid: ', Cell.newGrid(2, 2));
+			console.log('2x3 grid: ', Cell.newGrid(2, 3));
+			console.log('3x2 grid: ', Cell.newGrid(3, 2));
+			console.log('3x3 grid: ', Cell.newGrid(3, 3));
 		</script>
 	</body>
 

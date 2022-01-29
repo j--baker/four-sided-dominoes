@@ -17,6 +17,37 @@ class Cell {
 		return cell;
 	} )();
 
+	/**
+	 * @return The top left cell.
+	 */
+	static newGrid( width = 0, height = 1 ) {
+		let northCell = Cell.NULL_CELL;
+
+		for (let y = 0; y < +height; y++) {
+			let westCell = Cell.NULL_CELL;
+
+			for (let x = 0; x < +width; x++) {
+				let cell = new Cell({
+					neighbors: {
+						[Cell.NORTH]: northCell,
+						[Cell.WEST]:  westCell,
+					},
+					name: `[ ${x}, ${y} ]`
+				});
+
+				if (!northCell.isNull) { northCell.south = cell; }
+				northCell = northCell.east;
+
+				if (!westCell.isNull) { westCell.east = cell; }
+				westCell = cell;
+			}
+
+			if (northCell.isNull) { northCell = westCell.end( Cell.WEST ); }
+		}
+
+		return northCell.end( Cell.NORTH ).end( Cell.WEST );
+	}
+
 	constructor(
 		{
 			neighbors: {
@@ -39,14 +70,41 @@ class Cell {
 		}
 	) {
 		this.neighbors = {
-			[Cell.NORTH]: northNeighbor,
-			[Cell.EAST]:  eastNeighbor,
-			[Cell.SOUTH]: southNeighbor,
-			[Cell.WEST]:  westNeighbor,
+			[Cell.NORTH]: northNeighbor || Cell.NULL_CELL,
+			[Cell.EAST]:  eastNeighbor  || Cell.NULL_CELL,
+			[Cell.SOUTH]: southNeighbor || Cell.NULL_CELL,
+			[Cell.WEST]:  westNeighbor  || Cell.NULL_CELL,
 		};
 
 		this.name = name;
 		this.tile = tile;
+	}
+
+	advance( direction ) {
+		let cell = this;
+
+		return {
+			[Symbol.iterator]() {
+				return {
+					next() {
+						let value = !cell.isNull ? cell : undefined;
+						cell = cell.neighbors[ direction ];
+
+						return { value: value, done: value === undefined };
+					}
+				};
+			}
+		};
+	}
+
+	end( direction ) {
+		let end = Cell.NULL_CELL;
+
+		for (let cell of this.advance( direction )) {
+			end = cell;
+		}
+
+		return end;
 	}
 
 	get isNull() { return this === Cell.NULL_CELL; }
